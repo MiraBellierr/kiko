@@ -1,0 +1,33 @@
+{
+  "name": "kiko",
+  "version": "1.0.0",
+  "description": "A Discord bot",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mira",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/rest": "^0.3.0",
+    "ascii-table": "^0.0.9",
+    "common-tags": "^1.8.2",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-plugin-import": "^2.25.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiraBellierr/kiko.git"
+  },
+  "keywords": [
+    "kiko"
+  ],
+  "bugs": {
+    "url": "https://github.com/MiraBellierr/kiko/issues"
+  },
+  "homepage": "https://github.com/MiraBellierr/kiko#readme"
+}
