@@ -16,6 +16,6 @@ module.exports = {
 			.setTimestamp()
 			.setFooter({ text: client.user.tag, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
-		interaction.editReply({ embeds: [embed] }).then(msg.delete());
+		interaction.reply({ embeds: [embed] }).then(msg.delete());
 	},
 };

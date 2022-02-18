@@ -6,7 +6,7 @@ module.exports = async function(client) {
 	const commands = client.commands.map(({ run, category, ...data }) => data);
 
 	// eslint-disable-next-line no-undef
-	const rest = new REST({ version: "9" }).setToken(process.env.Bot_TOKEN);
+	const rest = new REST({ version: "9" }).setToken(process.env.BOT_TOKEN);
 
 	(async () => {
 		try {
