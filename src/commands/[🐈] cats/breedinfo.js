@@ -5,7 +5,7 @@ const { InteractionPaginate } = require("../../util/pagination");
 module.exports = {
 	name: "breedinfo",
 	description: "Returns information about cat breed",
-	category: "cats",
+	category: "[🐈] cats",
 	options: [{
 		name: "breed",
 		description: "The breed of cat you want to know about",
@@ -42,17 +42,6 @@ module.exports = {
 				.setAuthor({ name: "Cat Breed Info", iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
 				.setTitle(`${cat.name} | Overview`)
 				.setDescription(`**• Temperament:** ${cat.temperament}\n**• Origin:** ${cat.origin}\n**• Other Names:** ${cat.other_names}\n**• Group:** ${cat.group}\n**• Height:** ${cat.height}\n**• Body Length:** ${cat.bodyLength}\n**• Weight:** ${cat.weight}\n**• Life Expectancy:** ${cat.lifeExpectancy}\n**• Price:** ${cat.price}`)
-				// .addFields([
-				// 	{ name: "Temperament", value: `${cat.temperament}` },
-				// 	{ name: "Origin", value: `${cat.origin}`, inline: true },
-				// 	{ name: "Other Names", value: `${cat.other_names}`, inline: true },
-				// 	{ name: "Group", value: `${cat.group}` },
-				// 	{ name: "Height", value: `${cat.height}`, inline: true },
-				// 	{ name: "Body Length", value: `${cat.bodyLength}`, inline: true },
-				// 	{ name: "Weight", value: `${cat.weight}`, inline: true },
-				// 	{ name: "Life Expentancy", value: `${cat.lifeExpectancy}`, inline: true },
-				// 	{ name: "price", value: `${cat.price}`, inline: true },
-				// ])
 				.setColor("#CD1C6C")
 				.setTimestamp()
 				.setImage(cat.images[0])
