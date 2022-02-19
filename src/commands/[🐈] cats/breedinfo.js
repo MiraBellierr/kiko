@@ -120,6 +120,7 @@ module.exports = {
 			const noResultEmbed = new Discord.MessageEmbed()
 				.setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
 				.setTitle(`No results found for ${name}`)
+				.setDescription("Try: American, Persian, Siamese, or Maine")
 				.setColor("#CD1C6C")
 				.setFooter({ text: client.user.tag, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
 				.setTimestamp();
