@@ -17,7 +17,7 @@ module.exports = {
 		const pages = [];
         
 		const created = functions.formatDate(user.createdTimestamp);
-		const flags = user.flags.toArray().map(flag => `${flag.toLowerCase().split("_").map(str => `${str.replace(/(\s+[^a-z0-9]+|[^a-z0-9']+\s+|[\s&\\/]|^)+(\w)/g, str.charAt(0).toUpperCase())}`).join(" ")}`).join(", ");
+		const flags = user.flags.toArray().length > 0 ? user.flags.toArray().map(flag => `${flag.toLowerCase().split("_").map(str => `${str.replace(/(\s+[^a-z0-9]+|[^a-z0-9']+\s+|[\s&\\/]|^)+(\w)/g, str.charAt(0).toUpperCase())}`).join(" ")}`).join(", ") : "None";
 
 		const memberEmbed = new Discord.MessageEmbed();
 
