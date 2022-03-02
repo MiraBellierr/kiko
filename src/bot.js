@@ -29,6 +29,7 @@ const sequelize = new Sequelize("database", "user", "password", {
 client.commands = new Discord.Collection();
 
 ["command", "event"].forEach(event => require(`./handlers/${event}`)(client));
+["Quiz", "Balance"].forEach(database => require(`./database/schemes/${database.toLowerCase()}`)[database]());
 
 // eslint-disable-next-line no-undef
 client.login(process.env.BOT_TOKEN);
