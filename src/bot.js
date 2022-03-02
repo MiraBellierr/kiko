@@ -14,7 +14,7 @@ const sequelize = new Sequelize("database", "user", "password", {
 	host: "localhost",
 	dialect: "sqlite",
 	logging: console.log,
-	storage: "./src/database/database.sqlite",
+	storage: "database.sqlite",
 });
 
 (async function() {
