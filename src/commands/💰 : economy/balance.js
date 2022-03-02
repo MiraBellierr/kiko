@@ -5,7 +5,7 @@ const functions = require("../../util/functions");
 module.exports = {
 	name: "balance",
 	description: "check user balance",
-	category: "economy",
+	category: "💰 : economy",
 	options: [{
 		name: "user",
 		description: "choose a user",

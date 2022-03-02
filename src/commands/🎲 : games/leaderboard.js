@@ -3,7 +3,7 @@ const { Quiz } = require("../../database/schemes/quiz.js");
 module.exports = {
 	name: "leaderboard",
 	description: "display the game leaderboard",
-	category: "games",
+	category: "🎲 : games",
 	options: [{
 		name: "game",
 		description: "game leaderboard to be displayed",

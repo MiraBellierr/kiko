@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 	name: "ping",
 	description: "Returns latency and API ping",
-	category: "utility",
+	category: "✨ : utility",
 	run: async (client, interaction) => {
 		const msg = await interaction.channel.send("🏓 Pinging....");
 

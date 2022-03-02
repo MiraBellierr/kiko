@@ -5,7 +5,7 @@ const Pagination = require("../../util/pagination");
 module.exports = {
 	name: "whois",
 	description: "Returns information about a user.",
-	category: "utility",
+	category: "✨ : utility",
 	options: [{
 		name: "user",
 		description: "The user to get information about.",
