@@ -5,7 +5,7 @@ const { InteractionPaginate } = require("../../util/pagination");
 module.exports = {
 	name: "breedinfo",
 	description: "Returns information about cat breed",
-	category: "[🐈] cats",
+	category: "cats",
 	options: [{
 		name: "breed",
 		description: "The breed of cat you want to know about",

@@ -7,7 +7,7 @@ const process = require("process");
 module.exports = {
 	name: "botinfo",
 	description: "sends info about the bot",
-	category: "[✨] utility",
+	category: "utility",
 	run: async (client, interaction) => {
 		const clientApplication = await client.application.fetch();
 		const owner = `${clientApplication.owner.username}#${clientApplication.owner.discriminator}`;
