@@ -1,3 +1,5 @@
+const { Cooldown } = require("../database/schemes/cooldown");
+
 module.exports = {
   formatDate: function (date) {
     const options = {
@@ -42,5 +44,24 @@ module.exports = {
     }
 
     return array;
+  },
+
+  cooldown: async (prop, user, time) => {
+    const ms = await import("parse-ms");
+    const cooldown = await module.exports.getUserData(Cooldown(), user);
+    const timer = cooldown.get(prop);
+
+    if (timer !== null && time - (Date.now() - timer) > 0) {
+      const timeObj = ms.default(time - (Date.now() - timer));
+      return {
+        bool: true,
+        timeObj,
+      };
+    } else {
+      return {
+        bool: false,
+        timeObj: null,
+      };
+    }
   },
 };
