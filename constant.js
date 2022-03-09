@@ -1,0 +1,1 @@
+module.exports.color = "#CD1C6C";
