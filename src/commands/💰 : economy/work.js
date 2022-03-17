@@ -12,7 +12,7 @@ module.exports = {
 
 		if (timer.bool) return interaction.reply(`Please wait **${timer.timeObj.minutes}m ${timer.timeObj.seconds}s** until you can work again!`);
 
-		const word = words[Math.floor(Math.random * words.length)];
+		const word = words[Math.floor(Math.random() * words.length)];
 
 		interaction.reply(`**${interaction.user.username}**\nRetype this following phrase:\n\`${word}\``);
 
@@ -21,7 +21,7 @@ module.exports = {
 		const input = await interaction.channel.awaitMessages({
 			filter,
 			max: 1,
-			time: 30000
+			time: 30000,
 		});
 
 		if (!input.size) {
@@ -43,7 +43,7 @@ module.exports = {
 				{ where: { userid: interaction.user.id } }
 			);
 
-			interaction.followUp(`${functions.getWork(earn)}`);
+			interaction.followUp(`${functions.getWork(`:paw: ${earn}`)}`);
 		}
 		else {
 			interaction.followUp(`Poor effort ${interaction.user.username}, you lost the job.`);
