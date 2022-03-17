@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const { Balance } = require("../../database/schemes/balance");
 const functions = require("../../util/functions");
 const { Cooldown } = require("../../database/schemes/cooldown");
