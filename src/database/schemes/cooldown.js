@@ -12,11 +12,17 @@ const Cooldown = function () {
 		userid: {
 			type: Sequelize.STRING,
 			unique: true,
-			allowNull: false,
+			allowNull: false
 		},
 		work: {
-			type: Sequelize.DATE,
+			type: Sequelize.DATE
 		},
+		daily: {
+			type: Sequelize.DATE
+		},
+		weekly: {
+			type: Sequelize.DATE
+		}
 	});
 
 	CooldownScheme.sync();

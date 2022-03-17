@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const { Balance } = require("../../database/schemes/balance");
 const functions = require("../../util/functions");
 const { Cooldown } = require("../../database/schemes/cooldown");
-const constants = require("../../../constant");
+const words = ["I'm working for money.", "Today, I want to find a job.", "Time to go working!", "Let me take a break for a while", "Oh no, I'm late for work!", "Boss, I'm done."];
 
 module.exports = {
 	name: "work",
@@ -11,55 +11,44 @@ module.exports = {
 	run: async (client, interaction) => {
 		const timer = await functions.cooldown("work", interaction.user, 3600000);
 
-		const timeoutEmbed = new Discord.MessageEmbed()
-			.setAuthor({
-				name: interaction.user.username,
-				iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-			})
-			.setColor(constants.color)
-			.setTimestamp()
-			.setFooter({
-				text: client.user.username,
-				iconURL: client.user.displayAvatarURL(),
-			});
+		if (timer.bool) return interaction.reply(`Please wait **${timer.timeObj.minutes}m ${timer.timeObj.seconds}s** until you can work again!`);
 
-		if (timer.bool) {
-			timeoutEmbed.setDescription(
-				`Please wait **${timer.timeObj.minutes} minutes ${timer.timeObj.seconds} seconds** to work again!`
-			);
+		const word = words[Math.floor(Math.random * words.length)];
 
-			interaction.reply({ embeds: [timeoutEmbed] });
+		interaction.reply(`**${interaction.user.username}**\nRetype this following phrase:\n\`${word}\``);
 
+		const filter = m => m.author.id === interaction.user.id;
+
+		const input = await interaction.channel.awaitMessages({
+			filter,
+			max: 1,
+			time: 30000
+		});
+
+		if (!input.size) {
+			interaction.followUp("Time is up! You lost the job.");
 			return;
 		}
+		if (input.first().content.toLowerCase() === word.toLowerCase()) {
+			const balance = await functions.getUserData(Balance(), interaction.user);
+			const earn = Math.floor(Math.random() * 40);
+			const earned = balance.get("balance") + earn;
 
-		const balance = await functions.getUserData(Balance(), interaction.user);
-		const random = Math.floor(Math.random() * 40);
-		const earned = balance.get("balance") + random;
+			Balance().update(
+				{ balance: earned },
+				{ where: { userid: interaction.user.id } }
+			);
 
-		Balance().update(
-			{ balance: earned },
-			{ where: { userid: interaction.user.id } }
-		);
+			Cooldown().update(
+				{ work: Date.now() },
+				{ where: { userid: interaction.user.id } }
+			);
 
-		Cooldown().update(
-			{ work: Date.now() },
-			{ where: { userid: interaction.user.id } }
-		);
+			interaction.followUp(`${functions.getWork(earn)}`);
+		}
+		else {
+			interaction.followUp(`Poor effort ${interaction.user.username}, you lost the job.`);
+		}
 
-		const embed = new Discord.MessageEmbed()
-			.setAuthor({
-				name: interaction.user.username,
-				iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-			})
-			.setDescription(`You earned :paw: ${random}`)
-			.setColor(constants.color)
-			.setTimestamp()
-			.setFooter({
-				text: client.user.username,
-				iconURL: client.user.displayAvatarURL(),
-			});
-
-		interaction.reply({ embeds: [embed] });
 	},
 };
