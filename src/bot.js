@@ -42,7 +42,7 @@ const sequelize = new Sequelize("database", "user", "password", {
 client.commands = new Discord.Collection();
 
 ["command", "event"].forEach((event) => require(`./handlers/${event}`)(client));
-["Quiz", "Balance", "Cooldown"].forEach((database) =>
+["Quiz", "Balance", "Cooldown", "Streak"].forEach((database) =>
 	require(`./database/schemes/${database.toLowerCase()}`)[database]()
 );
 
