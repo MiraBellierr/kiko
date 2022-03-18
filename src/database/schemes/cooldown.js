@@ -22,6 +22,9 @@ const Cooldown = function () {
 		},
 		weekly: {
 			type: Sequelize.DATE
+		},
+		hangman: {
+			type: Sequelize.DATE
 		}
 	});
 
