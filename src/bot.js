@@ -41,6 +41,8 @@ const sequelize = new Sequelize("database", "user", "password", {
 
 client.commands = new Discord.Collection();
 
+Object.values(require("./handlers")).forEach(func => func(client));
+
 Object.values(require("./database/schemes")).forEach(func => func());
 
 // eslint-disable-next-line no-undef
