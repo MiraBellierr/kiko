@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { Quiz } = require("../../database/schemes/quiz.js");
+const { Quiz, Hangman } = require("../../database/schemes");
 const constants = require("../../../constant");
 
 module.exports = {
@@ -15,8 +15,12 @@ module.exports = {
 			choices: [
 				{
 					name: "quiz",
-					value: "Quiz",
+					value: "Quiz"
 				},
+				{
+					name: "hangman",
+					value: "Hangman"
+				}
 			],
 		},
 	],
@@ -45,6 +49,28 @@ module.exports = {
 				leaderboard.push(
 					`**[${index + 1}]** - ${user.toString()}: ${
 						quiz.dataValues.point
+					} points`
+				);
+			});
+
+			console.log(leaderboard);
+
+			embed.setDescription(leaderboard.join("\n"));
+		}
+		else if (choice.toLowerCase() === "hangman") {
+			const findAllUser = await Hangman().findAll({
+				order: [["point", "DESC"]],
+				limit: 10,
+			});
+			const leaderboard = [];
+
+			await findAllUser.forEach(async (hangman, index) => {
+				const user = await client.users.fetch(hangman.dataValues.userid);
+				console.log(user.id);
+
+				leaderboard.push(
+					`**[${index + 1}]** - ${user.toString()}: ${
+						hangman.dataValues.point
 					} points`
 				);
 			});

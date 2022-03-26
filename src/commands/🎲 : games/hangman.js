@@ -3,8 +3,7 @@ const Discord = require("discord.js");
 const playing = new Set();
 const animals = require("../../database/json/animals.json");
 const functions = require("../../util/functions");
-const  { Cooldown } = require("../../database/schemes/cooldown");
-const { Balance } = require("../../database/schemes/balance");
+const { Balance, Cooldown, Hangman } = require("../../database/schemes");
 const Constants = require("../../../constant");
 
 module.exports = {
@@ -15,7 +14,7 @@ module.exports = {
 		const user = interaction.user;
 
 		const balance = await functions.getUserData(Balance(), user);
-
+		const hangman = await functions.getUserData(Hangman(), user);
 		const timer = await functions.cooldown("hangman", user, 15000);
 
 		if (timer.bool) {
@@ -127,8 +126,18 @@ module.exports = {
 					{ where: { userid: user.id } }
 				);
 
+				Hangman().update(
+					{ point: hangman.get("point") + 1 },
+					{ where: { userid: user.id } }
+				);
+
 				return interaction.channel.send(`You are correct! It was **${word}**. You won :paw: **20**!`);
 			}
+
+			Hangman().update(
+				{ point: hangman.get("point") - 1 },
+				{ where: { userid: user.id } }
+			);
 
 			interaction.channel.send(`You could not guess it. The answer was **${word}**!`);
 
