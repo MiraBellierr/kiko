@@ -24,7 +24,7 @@ Kiko is supposely to be a pet and economy Discord bot 🐈 developed by me for f
 You may contribute to the this repo. I would appreciate it if you do so and help me with the development. Start by helping me with the issue in [issues](https://github.com/MiraBellierr/kiko/issues)! ✨
 
 ## 💚 License
--- in progress -- 
+ʚ₊ Released under the [Apache License 2.0](https://github.com/MiraBellierr/Kannabotto/blob/main/LICENSE) license.<br>
 
 ## 💙 Credits
 
