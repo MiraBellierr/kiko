@@ -1,7 +1,5 @@
 const functions = require("../../util/functions");
-const { Balance } = require("../../database/schemes/balance");
-const { Cooldown } = require("../../database/schemes/cooldown");
-const { Streak } = require("../../database/schemes/streak");
+const { Balance, Cooldown, Streak } = require("../../database/schemes");
 
 module.exports = {
 	name: "daily",

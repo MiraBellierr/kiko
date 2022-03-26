@@ -1,6 +1,5 @@
-const { Balance } = require("../../database/schemes/balance");
 const functions = require("../../util/functions");
-const { Cooldown } = require("../../database/schemes/cooldown");
+const { Balance, Cooldown } = require("../../database/schemes");
 const words = ["I'm working for money.", "Today, I want to find a job.", "Time to go working!", "Let me take a break for a while", "Oh no, I'm late for work!", "Boss, I'm done."];
 
 module.exports = {

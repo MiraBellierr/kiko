@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { Balance } = require("../../database/schemes/balance");
+const { Balance } = require("../../database/schemes");
 const functions = require("../../util/functions");
 const constants = require("../../../constant");
 

@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { Quiz } = require("../../database/schemes/quiz.js");
+const { Quiz } = require("../../database/schemes");
 const functions = require("../../util/functions.js");
 const axios = require("axios").default;
 const { decode } = require("html-entities");
