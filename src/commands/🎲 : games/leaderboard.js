@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { Quiz, Hangman } = require("../../database/schemes");
-const constants = require("../../../constant.js");
+const constants = require("../../../constant");
 
 module.exports = {
 	name: "leaderboard",

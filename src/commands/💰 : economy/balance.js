@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const { Balance } = require("../../database/schemes");
 const functions = require("../../util/functions");
-const constants = require("../../../constant.js");
+const constants = require("../../../constant");
 
 module.exports = {
 	name: "balance",

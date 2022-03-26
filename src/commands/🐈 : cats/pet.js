@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const catNames = require("../../database/json/catNames.json");
-const constants = require("../../../constant.js");
+const constants = require("../../../constant");
 
 module.exports = {
 	name: "pet",

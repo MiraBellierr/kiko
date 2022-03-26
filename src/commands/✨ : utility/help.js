@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const commonTags = require("common-tags");
 const fs = require("fs");
-const constants = require("../../../constant.js");
+const constants = require("../../../constant");
 
 module.exports = {
 	name: "help",

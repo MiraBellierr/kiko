@@ -4,7 +4,7 @@ const playing = new Set();
 const animals = require("../../database/json/animals.json");
 const functions = require("../../util/functions");
 const { Balance, Cooldown, Hangman } = require("../../database/schemes");
-const Constants = require("../../../constant.js");
+const Constants = require("../../../constant");
 
 module.exports = {
 	name: "hangman",

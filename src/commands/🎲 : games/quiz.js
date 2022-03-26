@@ -3,7 +3,7 @@ const { Quiz } = require("../../database/schemes");
 const functions = require("../../util/functions.js");
 const axios = require("axios").default;
 const { decode } = require("html-entities");
-const constants = require("../../../constant.js");
+const constants = require("../../../constant");
 
 module.exports = {
 	name: "quiz",
