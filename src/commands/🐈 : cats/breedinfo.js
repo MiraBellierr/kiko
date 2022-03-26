@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const cats = require("../../database/json/cats.json");
 const { InteractionPaginate } = require("../../util/pagination");
-const constants = require("../../../constant");
+const constants = require("../../../constant.js");
 
 module.exports = {
 	name: "breedinfo",

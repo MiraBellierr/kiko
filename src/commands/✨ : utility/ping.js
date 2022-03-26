@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const constants = require("../../../constant");
+const constants = require("../../../constant.js");
 
 module.exports = {
 	name: "ping",

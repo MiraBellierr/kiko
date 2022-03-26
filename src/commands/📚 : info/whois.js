@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const functions = require("../../util/functions.js");
 const Pagination = require("../../util/pagination");
-const constants = require("../../../constant");
+const constants = require("../../../constant.js");
 
 
 module.exports = {

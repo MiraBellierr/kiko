@@ -3,7 +3,7 @@ const functions = require("../../util/functions.js");
 const osu = require("node-os-utils");
 const si = require("systeminformation");
 const process = require("process");
-const constants = require("../../../constant");
+const constants = require("../../../constant.js");
 
 module.exports = {
 	name: "botinfo",
