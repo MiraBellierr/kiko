@@ -2,7 +2,7 @@
 
 # Kiko
 
-Kiko is a Discord bot written in Javascript developed by Mirabellier just for fun. 🍄<br>Containing 2 commands. 🌼
+Kiko is a Discord bot written in Javascript developed by Mirabellier just for fun. 🍄<br>Containing 10+ commands. 🌼
 
 ## ❤️ About
 Kiko is supposely to be a pet and economy Discord bot 🐈 developed by me for fun. You can invite it to your Discord server by clicking [this link](https://discord.com/api/oauth2/authorize?client_id=938774709762408490&permissions=0&scope=bot%20applications.commands)! You can also join our Discord server [Kanna's Kawaii Klubhouse](https://discord.gg/NcPeGuNEdc) for all questions, suggestions, and assistance! It comes packaged with a variety of fun commands and utility commands that can be useful for your server.
