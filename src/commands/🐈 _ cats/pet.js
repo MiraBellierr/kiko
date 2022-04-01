@@ -21,7 +21,7 @@ const constants = require("../../../constant");
 module.exports = {
 	name: "pet",
 	description: "visit your pet!",
-	category: "🐈 : cats",
+	category: "🐈 _ cats",
 	options: [
 		{
 			name: "user",

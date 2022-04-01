@@ -21,7 +21,7 @@ const constants = require("../../../constant");
 
 module.exports = {
 	name: "help",
-	category: "✨ : utility",
+	category: "✨ _ utility",
 	description: "Returns all commands",
 	run: async (client, interaction) => {
 		return getAll(client, interaction);

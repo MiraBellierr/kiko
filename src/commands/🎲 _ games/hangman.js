@@ -25,7 +25,7 @@ const Constants = require("../../../constant");
 module.exports = {
 	name: "hangman",
 	description: "Guess a word game",
-	category: "🎲 : games",
+	category: "🎲 _ games",
 	run: async (client, interaction) => {
 		const user = interaction.user;
 

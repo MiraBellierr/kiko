@@ -23,7 +23,7 @@ const constants = require("../../../constant");
 module.exports = {
 	name: "whois",
 	description: "Returns information about a user.",
-	category: "📚 : info",
+	category: "📚 _ info",
 	options: [
 		{
 			name: "user",

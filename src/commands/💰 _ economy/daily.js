@@ -20,7 +20,7 @@ const { Balance, Cooldown, Streak } = require("../../database/schemes");
 module.exports = {
 	name: "daily",
 	description: "claim paws daily",
-	category: "💰 : economy",
+	category: "💰 _ economy",
 	run: async (client, interaction) => {
 		const timer = await functions.cooldown("daily", interaction.user, 8.64e+7);
 		const initialTime = performance.now();

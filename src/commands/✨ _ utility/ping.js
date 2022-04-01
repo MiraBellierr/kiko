@@ -20,7 +20,7 @@ const constants = require("../../../constant");
 module.exports = {
 	name: "ping",
 	description: "Returns latency and API ping",
-	category: "✨ : utility",
+	category: "✨ _ utility",
 	run: async (client, interaction) => {
 		const msg = await interaction.channel.send("🏓 Pinging....");
 

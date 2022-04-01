@@ -24,7 +24,7 @@ const constants = require("../../../constant");
 module.exports = {
 	name: "botinfo",
 	description: "sends info about the bot",
-	category: "📚 : info",
+	category: "📚 _ info",
 	run: async (client, interaction) => {
 		const clientApplication = await client.application.fetch();
 		const owner = `${clientApplication.owner.username}#${clientApplication.owner.discriminator}`;

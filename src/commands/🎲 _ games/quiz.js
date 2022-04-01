@@ -24,7 +24,7 @@ const constants = require("../../../constant");
 module.exports = {
 	name: "quiz",
 	description: "A quiz about animals",
-	category: "🎲 : games",
+	category: "🎲 _ games",
 	run: async (client, interaction) => {
 		const quizData = await functions.getUserData(Quiz(), interaction.user);
 		const point = quizData.get("point");

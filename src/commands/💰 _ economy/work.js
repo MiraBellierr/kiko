@@ -21,7 +21,7 @@ const words = ["I'm working for money.", "Today, I want to find a job.", "Time t
 module.exports = {
 	name: "work",
 	description: "earn paws",
-	category: "💰 : economy",
+	category: "💰 _ economy",
 	run: async (client, interaction) => {
 		const timer = await functions.cooldown("work", interaction.user, 3600000);
 

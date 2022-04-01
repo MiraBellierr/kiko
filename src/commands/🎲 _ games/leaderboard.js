@@ -21,7 +21,7 @@ const constants = require("../../../constant");
 module.exports = {
 	name: "leaderboard",
 	description: "display the game leaderboard",
-	category: "🎲 : games",
+	category: "🎲 _ games",
 	options: [
 		{
 			name: "game",

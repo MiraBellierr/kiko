@@ -22,7 +22,7 @@ const constants = require("../../../constant");
 module.exports = {
 	name: "breedinfo",
 	description: "Returns information about cat breed",
-	category: "🐈 : cats",
+	category: "🐈 _ cats",
 	options: [
 		{
 			name: "breed",

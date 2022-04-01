@@ -22,7 +22,7 @@ const constants = require("../../../constant");
 module.exports = {
 	name: "balance",
 	description: "check user balance",
-	category: "💰 : economy",
+	category: "💰 _ economy",
 	options: [
 		{
 			name: "user",
