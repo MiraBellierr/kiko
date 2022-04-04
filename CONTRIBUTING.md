@@ -20,10 +20,16 @@ If you have an idea or you have found a bug in the bot, you can [open an issue](
 First create a fork of the [MiraBellierr/kiko](https://github.com/MiraBellierr/kiko). If you are just getting started please see [How does the bot work](#how-does-the-bot-work). This will give you basic understanding of the code of the bot. To test the bot locally see [Running the bot locally](#running-the-bot-locally).
 When pushing commits and creating pull requests please follow the [Style guides](#style-guides).
 
-Please also use a linter to make sure the code is correctly formatted:
+Please also use a formatter to make sure the code is correctly formatted:
 
 ```shell
-npm install eslint
+npm install --save-dev --save-exact prettier
+```
+
+to format all files with Prettier:
+
+```shell
+npx prettier --write .
 ```
 
 ## Style guides
