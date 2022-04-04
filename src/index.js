@@ -18,8 +18,8 @@ require("dotenv").config();
 const { ShardingManager } = require("discord.js");
 
 const manager = new ShardingManager("./src/bot.js", {
-	// eslint-disable-next-line no-undef
-	token: process.env.BOT_TOKEN,
+  // eslint-disable-next-line no-undef
+  token: process.env.BOT_TOKEN,
 });
 
 manager.on("shardCreate", (shard) => console.log(`Launched shard ${shard.id}`));

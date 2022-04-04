@@ -23,146 +23,168 @@ const { Balance, Cooldown, Hangman } = require("../../database/schemes");
 const Constants = require("../../../constant");
 
 module.exports = {
-	name: "hangman",
-	description: "Guess a word game",
-	category: "🎲 _ games",
-	run: async (client, interaction) => {
-		const user = interaction.user;
+  name: "hangman",
+  description: "Guess a word game",
+  category: "🎲 _ games",
+  run: async (client, interaction) => {
+    const user = interaction.user;
 
-		const balance = await functions.getUserData(Balance(), user);
-		const hangman = await functions.getUserData(Hangman(), user);
-		const timer = await functions.cooldown("hangman", user, 15000);
+    const balance = await functions.getUserData(Balance(), user);
+    const hangman = await functions.getUserData(Hangman(), user);
+    const timer = await functions.cooldown("hangman", user, 15000);
 
-		if (timer.bool) {
-			return interaction.reply(`**${interaction.user.username}**, please wait **${timer.timeObj.seconds}s** till you can play again!`);
-		}
+    if (timer.bool) {
+      return interaction.reply(
+        `**${interaction.user.username}**, please wait **${timer.timeObj.seconds}s** till you can play again!`
+      );
+    }
 
-		Cooldown().update(
-			{ hangman: Date.now() },
-			{ where: { userid: user.id } }
-		);
+    Cooldown().update({ hangman: Date.now() }, { where: { userid: user.id } });
 
-		const category = "Animal";
+    const category = "Animal";
 
-		if (playing.has(interaction.channel.id)) return interaction.reply("Only one game may be occuring per channel.");
+    if (playing.has(interaction.channel.id))
+      return interaction.reply("Only one game may be occuring per channel.");
 
-		playing.add(interaction.channel.id);
+    playing.add(interaction.channel.id);
 
-		try {
-			const word = animals.animals[Math.floor(Math.random() * animals.animals.length)];
-			let points = 0;
-			let displayText = null;
-			let guessed = false;
-			const confirmation = [];
-			const incorrect = [];
-			const display = new Array(word.length).fill("_");
-            
-			interaction.reply("-");
+    try {
+      const word =
+        animals.animals[Math.floor(Math.random() * animals.animals.length)];
+      let points = 0;
+      let displayText = null;
+      let guessed = false;
+      const confirmation = [];
+      const incorrect = [];
+      const display = new Array(word.length).fill("_");
 
-			for (let i = 0; i < word.length; i++) {
-				if (word.charAt(i) === " " || word.charAt(i) === "-" || word.charAt(i) === "'" || word.charAt(i) === "," || word.charAt(i) === ".") {
-					display[i] = word.charAt(i);
+      interaction.reply("-");
 
-					confirmation.push(word.charAt(i));
-				}
-			}
+      for (let i = 0; i < word.length; i++) {
+        if (
+          word.charAt(i) === " " ||
+          word.charAt(i) === "-" ||
+          word.charAt(i) === "'" ||
+          word.charAt(i) === "," ||
+          word.charAt(i) === "."
+        ) {
+          display[i] = word.charAt(i);
 
-			while (word.length !== confirmation.length && points < 6) {
-				const embed = new Discord.MessageEmbed()
-					.setColor(Constants.color)
-					.setTitle(`Hangman game - Theme: ${category}`)
-					.setDescription(stripIndents`
-                    ${displayText === null ? "Here we go!" : displayText ? "Good job!" : "Nope!"}
+          confirmation.push(word.charAt(i));
+        }
+      }
+
+      while (word.length !== confirmation.length && points < 6) {
+        const embed = new Discord.MessageEmbed()
+          .setColor(Constants.color)
+          .setTitle(`Hangman game - Theme: ${category}`)
+          .setDescription(stripIndents`
+                    ${
+                      displayText === null
+                        ? "Here we go!"
+                        : displayText
+                        ? "Good job!"
+                        : "Nope!"
+                    }
                     \`${display.join(" ")}\`. Which letter do you choose?
                     Incorrect Tries: ${incorrect.join(", ") || "None"}
                     \`\`\`
                     . ┌─────┐
                     . ┃      ┋
                     . ┃      ${points > 0 ? "O" : ""}
-                    . ┃     ${points > 2 ? "/" : " "}${points > 1 ? "|" : ""}${points > 3 ? "\\" : ""}
+                    . ┃     ${points > 2 ? "/" : " "}${points > 1 ? "|" : ""}${
+          points > 3 ? "\\" : ""
+        }
                     . ┃     ${points > 4 ? "/" : ""}${points > 5 ? "\\" : ""}
                      =============
                        \`\`\`
                     `);
 
-				const m = await interaction.channel.send({ embeds: [embed] });
+        const m = await interaction.channel.send({ embeds: [embed] });
 
-				const filter = m => {
-					const choice = m.content.toLowerCase();
+        const filter = (m) => {
+          const choice = m.content.toLowerCase();
 
-					return m.author.id === user.id && !confirmation.includes(choice) && !incorrect.includes(choice);
-				};
+          return (
+            m.author.id === user.id &&
+            !confirmation.includes(choice) &&
+            !incorrect.includes(choice)
+          );
+        };
 
-				const guess = await interaction.channel.awaitMessages({
-					filter,
-					max: 1,
-					time: 30000
-				});
+        const guess = await interaction.channel.awaitMessages({
+          filter,
+          max: 1,
+          time: 30000,
+        });
 
-				if (!guess.size) {
-					playing.delete(interaction.channel.id);
+        if (!guess.size) {
+          playing.delete(interaction.channel.id);
 
-					return interaction.channel.send(`Sorry. time is up! The answer was **${word}**!`);
-				}
+          return interaction.channel.send(
+            `Sorry. time is up! The answer was **${word}**!`
+          );
+        }
 
-				m.delete();
+        m.delete();
 
-				const choice = guess.first().content.toLowerCase();
+        const choice = guess.first().content.toLowerCase();
 
-				if (choice === "end") break;
-				if (choice.length > 1 && choice == word) {
-					guessed = true;
-					break;
-				}
-				else if (word.includes(choice)) {
-					displayText = true;
+        if (choice === "end") break;
+        if (choice.length > 1 && choice == word) {
+          guessed = true;
+          break;
+        } else if (word.includes(choice)) {
+          displayText = true;
 
-					for (let i = 0; i < word.length; i++) {
-						if (word.charAt(i) !== choice) continue;
+          for (let i = 0; i < word.length; i++) {
+            if (word.charAt(i) !== choice) continue;
 
-						confirmation.push(word.charAt(i));
-                        
-						display[i] = word.charAt(i);
-					}
-				}
-				else {
-					displayText = false;
+            confirmation.push(word.charAt(i));
 
-					if (choice.length == 1) incorrect.push(choice);
+            display[i] = word.charAt(i);
+          }
+        } else {
+          displayText = false;
 
-					points++;
-				}
-			}
+          if (choice.length == 1) incorrect.push(choice);
 
-			playing.delete(interaction.channel.id);
+          points++;
+        }
+      }
 
-			if (word.length === confirmation.length || guessed) {
-				Balance().update(
-					{ balance: balance.get("balance") + 20 },
-					{ where: { userid: user.id } }
-				);
+      playing.delete(interaction.channel.id);
 
-				Hangman().update(
-					{ point: hangman.get("point") + 1 },
-					{ where: { userid: user.id } }
-				);
+      if (word.length === confirmation.length || guessed) {
+        Balance().update(
+          { balance: balance.get("balance") + 20 },
+          { where: { userid: user.id } }
+        );
 
-				return interaction.channel.send(`You are correct! It was **${word}**. You won :paw: **20**!`);
-			}
+        Hangman().update(
+          { point: hangman.get("point") + 1 },
+          { where: { userid: user.id } }
+        );
 
-			Hangman().update(
-				{ point: hangman.get("point") - 1 },
-				{ where: { userid: user.id } }
-			);
+        return interaction.channel.send(
+          `You are correct! It was **${word}**. You won :paw: **20**!`
+        );
+      }
 
-			interaction.channel.send(`You could not guess it. The answer was **${word}**!`);
+      Hangman().update(
+        { point: hangman.get("point") - 1 },
+        { where: { userid: user.id } }
+      );
 
-		} catch (e) {
-			playing.delete(interaction.channel.id);
+      interaction.channel.send(
+        `You could not guess it. The answer was **${word}**!`
+      );
+    } catch (e) {
+      playing.delete(interaction.channel.id);
 
-			console.log(e);
+      console.log(e);
 
-			interaction.channel.send(`Oh no, an error ocurred: (\`${e.message}\`)`);
-		}
-	}
+      interaction.channel.send(`Oh no, an error ocurred: (\`${e.message}\`)`);
+    }
+  },
 };
